@@ -99,6 +99,32 @@ src/
 
 ---
 
+## 🤖 Virtual Agent Workflows (Internal Reasoning)
+
+작업 수행 시 클로드 코드는 내부적으로 다음 세 가지 에이전트 역할을 가상으로 분리하여 단계적으로 사고한다.
+
+### 1. [Architect Agent] - 기획 및 명세 (docs/ 분석)
+- **Role**: 비즈니스 로직 설계 및 `docs/*.md` 업데이트.
+- **Priority**: 코드 수정 전 반드시 관련 도메인 문서를 최신화하거나 일치 여부를 검사한다.
+- **Focus**: 에지 케이스(예외 처리), 데이터 모델 정의.
+
+### 2. [Data Agent] - Mock 인프라 관리 (src/mocks/)
+- **Role**: `src/api/mockBaseQuery.js` 및 `src/mocks/*.js` 전담.
+- **Priority**: 비즈니스 로직 변경 시 UI 수정보다 Mock 데이터 구조 업데이트를 우선한다.
+- **Focus**: 데이터 정합성, 실제 API 응답 시뮬레이션.
+
+### 3. [Engineer Agent] - UI 및 기능 구현 (src/components, features)
+- **Role**: React 19 및 Tailwind v4 표준에 따른 실제 컴포넌트 구현.
+- **Priority**: Architect와 Data Agent의 결과물을 바탕으로 최적의 클린 코드를 작성한다.
+- **Focus**: 성능 최적화, UI 일관성, `CLAUDE.md` 엔지니어링 표준 준수.
+
+## 🔄 Multi-Agent Execution Protocol
+1. 사용자가 변경 요청을 하면 **[Architect]**가 영향도를 분석하고 관련 `.md` 수정을 제안한다.
+2. 기획 확정 후 **[Data]**가 Mock 데이터 환경을 먼저 세팅한다.
+3. 마지막으로 **[Engineer]**가 코드를 구현하고 리팩토링한다.
+
+---
+
 ## ⚠️ AI Implementation Rules
 1. **No Axios**: 모든 네트워크 요청은 RTK Query(`mockBaseQuery` 또는 `fetchBaseQuery`)로 작성.
 2. **Pure JS**: TypeScript 문법 절대 사용 금지.
