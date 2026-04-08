@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { PET_TYPE, PET_TYPE_LABEL, CATEGORY, CATEGORY_LABEL } from '../features/products/productConstants'
 import ProductCard from '../features/products/ProductCard'
 import { useGetProductsQuery } from '../features/products/productsApiSlice'
@@ -16,8 +17,9 @@ const CATEGORY_FILTERS = [
 ]
 
 export default function ProductListPage() {
-  const [selectedPetType, setSelectedPetType] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [searchParams] = useSearchParams()
+  const [selectedPetType, setSelectedPetType] = useState(searchParams.get('petType') ?? '')
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') ?? '')
 
   const { data, isLoading, isError } = useGetProductsQuery({
     petType: selectedPetType || undefined,

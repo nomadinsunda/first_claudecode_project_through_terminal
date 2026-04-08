@@ -9,6 +9,7 @@
  *   → RTK Query의 invalidatesTags → refetch 흐름이 실제와 동일하게 동작
  */
 import { mockProducts } from '../mocks/products'
+import { petLandingData } from '../config/landing'
 import { mockOrders as initialOrders } from '../mocks/orders'
 import { mockReviews as initialReviews } from '../mocks/reviews'
 import { MOCK_POINT_BALANCE, mockPointHistory } from '../mocks/points'
@@ -56,6 +57,19 @@ function handleRequest(url = '', method = 'GET', body) {
     if (seg[1] === 'me' || seg[1] === 'refresh')  return MOCK_USER
     if (seg[1] === 'login')                        return MOCK_USER
     if (seg[1] === 'logout')                       return {}
+  }
+
+  // ── /landing ──
+  if (seg[0] === 'landing') {
+    return {
+      ...petLandingData,
+      themeSections: petLandingData.themeSections.map(section => ({
+        ...section,
+        products: section.productIds
+          .map(id => mockProducts.find(p => p.id === id))
+          .filter(Boolean),
+      })),
+    }
   }
 
   // ── /products ──

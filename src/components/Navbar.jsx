@@ -22,6 +22,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex-none gap-1">
+        <Link to="/products" className="btn btn-ghost btn-sm">전체 상품</Link>
         <Link to="/cs" className="btn btn-ghost btn-sm">고객센터</Link>
 
         {/* 장바구니 */}

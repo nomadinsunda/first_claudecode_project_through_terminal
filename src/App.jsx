@@ -4,6 +4,7 @@ import AuthInitializer from './components/AuthInitializer'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
 
+import LandingPage        from './pages/LandingPage'
 import ProductListPage    from './pages/ProductListPage'
 import ProductDetailPage  from './pages/ProductDetailPage'
 import LoginPage          from './pages/LoginPage'
@@ -28,7 +29,8 @@ export default function App() {
         <Routes>
           <Route element={<Layout />}>
             {/* 공개 */}
-            <Route path="/"                 element={<ProductListPage />} />
+            <Route path="/"                 element={<LandingPage />} />
+            <Route path="/products"         element={<ProductListPage />} />
             <Route path="/products/:id"     element={<ProductDetailPage />} />
             <Route path="/login"            element={<LoginPage />} />
             <Route path="/oauth2/callback"  element={<OAuth2CallbackPage />} />

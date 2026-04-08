@@ -30,7 +30,16 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: (productId) => `/products/${productId}`,
       providesTags: (result, error, productId) => [{ type: 'Product', id: productId }],
     }),
+
+    /**
+     * 랜딩 페이지 데이터 조회
+     * themeSections.products는 mockBaseQuery에서 productIds → 상품 객체로 hydrate됨
+     */
+    getLandingData: builder.query({
+      query: () => '/landing',
+      providesTags: [{ type: 'Product', id: 'LANDING' }],
+    }),
   }),
 })
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productsApiSlice
+export const { useGetProductsQuery, useGetProductByIdQuery, useGetLandingDataQuery } = productsApiSlice
