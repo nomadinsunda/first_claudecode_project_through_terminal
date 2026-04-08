@@ -1,0 +1,28 @@
+export const mockInquiries = [
+  {
+    id: 'INQ-001',
+    type: '상품 문의',
+    productName: '오리&연어 그레인프리 사료 2kg',
+    productId: 1,
+    thumbnail: 'https://placehold.co/60x60/f3f4f6/9ca3af?text=1',
+    status: 'ANSWERED',
+    title: '사료 알러지 성분 문의드립니다',
+    content: '해당 사료에 글루텐이나 밀 성분이 포함되어 있나요? 강아지가 곡물 알러지가 있어서 꼭 확인하고 싶어요.',
+    answer: '안녕하세요, 펫마켓 고객센터입니다. 문의하신 오리&연어 그레인프리 사료는 밀·옥수수·쌀 등 곡물 성분이 전혀 포함되지 않은 그레인프리 제품입니다. 알러지 걱정 없이 급여하셔도 됩니다. 추가 문의가 있으시면 언제든지 연락 주세요.',
+    answeredAt: '2026-03-16T14:00:00',
+    createdAt: '2026-03-15T10:00:00',
+  },
+  {
+    id: 'INQ-002',
+    type: '배송 문의',
+    productName: '소고기 져키 간식 100g',
+    productId: 2,
+    thumbnail: 'https://placehold.co/60x60/f3f4f6/9ca3af?text=2',
+    status: 'PENDING',
+    title: '주문 5일이 지났는데 아직 미도착이에요',
+    content: '4월 1일에 주문했는데 오늘 4월 6일까지도 도착하지 않았어요. 배송 조회를 해봐도 정보가 업데이트되지 않고 있습니다. 확인 부탁드립니다.',
+    answer: null,
+    answeredAt: null,
+    createdAt: '2026-04-06T11:00:00',
+  },
+]
